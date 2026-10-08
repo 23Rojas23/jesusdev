@@ -1,16 +1,16 @@
 import type { Service, Project, TechItem, Testimonial, PricingPlan, FaqItem } from '../types';
 
 export const personalInfo = {
-  name: "Carlos Mendoza",
-  brandName: "CarlosDev",
+  name: "Jesus Rojas",
+  brandName: "JesusDev",
   title: "Desarrollador Web Full Stack & Especialista Frontend",
   tagline: "Desarrollo sitios web modernos, rápidos y de alto impacto comercial.",
-  bio: "Con más de 5 años creando soluciones digitales para startups, empresas y profesionales. Especializado en React, Next.js, Node.js y Tailwind CSS.",
-  email: "contacto@carlosdev.com",
-  phone: "+34 600 000 000",
-  whatsappNumber: "34600000000", // Sin signos ni espacios para api.whatsapp
-  whatsappMessage: "¡Hola Carlos! Vi tu landing page y me gustaría cotizar un proyecto web.",
-  location: "Madrid, España (Disponible para todo el mundo en remoto)",
+  bio: "Creamos soluciones digitales para startups, empresas y profesionales. Especializado en React, Next.js, Node.js y Tailwind CSS.",
+  email: "jesusenrique230701@gmail.com",
+  phone: "+58 412 969 3441",
+  whatsappNumber: "584129693441",
+  whatsappMessage: "¡Hola Jesus! Vi tu landing page y me gustaría cotizar un proyecto web.",
+  location: "Valencia, Venezuela",
   availableForHire: true,
   yearsExperience: "5+",
   projectsCompleted: "40+",

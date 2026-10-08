@@ -8,22 +8,22 @@ export const Footer: FC = () => {
   };
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-900 py-16 text-slate-400 text-sm">
+    <footer className="bg-slate-50 border-t border-slate-200 py-16 text-slate-600 text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-900">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-200">
           {/* Brand col */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 p-0.5">
-                <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                  <Code2 className="w-4 h-4 text-indigo-400" />
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-500 p-0.5 shadow-xs">
+                <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
+                  <Code2 className="w-4 h-4 text-indigo-600" />
                 </div>
               </div>
-              <span className="font-bold text-lg text-white">
+              <span className="font-bold text-lg text-slate-900">
                 &lt;{personalInfo.brandName} /&gt;
               </span>
             </div>
-            <p className="text-slate-400 text-xs sm:text-sm max-w-sm leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-sm max-w-sm leading-relaxed">
               {personalInfo.bio}
             </p>
             <div className="flex items-center gap-3 pt-2">
@@ -32,7 +32,7 @@ export const Footer: FC = () => {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:border-indigo-300 transition-colors shadow-2xs"
                 aria-label="GitHub"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -45,7 +45,7 @@ export const Footer: FC = () => {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:border-indigo-300 transition-colors shadow-2xs"
                 aria-label="LinkedIn"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ export const Footer: FC = () => {
                 href={personalInfo.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:border-indigo-300 transition-colors shadow-2xs"
                 aria-label="X / Twitter"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -70,32 +70,32 @@ export const Footer: FC = () => {
 
           {/* Quick links */}
           <div className="md:col-span-3 space-y-3">
-            <h4 className="font-bold text-white text-xs uppercase tracking-wider">
+            <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
               Navegación
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               <li>
-                <a href="#servicios" className="hover:text-cyan-400 transition-colors">
+                <a href="#servicios" className="hover:text-indigo-600 transition-colors">
                   Servicios de Desarrollo
                 </a>
               </li>
               <li>
-                <a href="#proyectos" className="hover:text-cyan-400 transition-colors">
+                <a href="#proyectos" className="hover:text-indigo-600 transition-colors">
                   Portafolio & Casos de Éxito
                 </a>
               </li>
               <li>
-                <a href="#tecnologias" className="hover:text-cyan-400 transition-colors">
+                <a href="#tecnologias" className="hover:text-indigo-600 transition-colors">
                   Tecnologías & Ventajas
                 </a>
               </li>
               <li>
-                <a href="#proceso" className="hover:text-cyan-400 transition-colors">
+                <a href="#proceso" className="hover:text-indigo-600 transition-colors">
                   Metodología de Trabajo
                 </a>
               </li>
               <li>
-                <a href="#calculadora" className="hover:text-cyan-400 transition-colors">
+                <a href="#calculadora" className="hover:text-indigo-600 transition-colors">
                   Calculadora de Presupuesto
                 </a>
               </li>
@@ -104,15 +104,15 @@ export const Footer: FC = () => {
 
           {/* Contact and legal */}
           <div className="md:col-span-4 space-y-3">
-            <h4 className="font-bold text-white text-xs uppercase tracking-wider">
+            <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
               Disponibilidad
             </h4>
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2">
-              <div className="flex items-center gap-2 text-xs text-emerald-400 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="p-4 rounded-2xl bg-white border border-slate-200 space-y-2 shadow-2xs">
+              <div className="flex items-center gap-2 text-xs text-emerald-700 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Abierto a nuevos clientes</span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-600">
                 Aceptando proyectos para este mes. Agenda tu reunión previa para reservar cupo en el calendario.
               </p>
             </div>
@@ -126,13 +126,13 @@ export const Footer: FC = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1 text-slate-400">
+            <span className="flex items-center gap-1 text-slate-600">
               Hecho con <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> en React + Tailwind
             </span>
 
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+              className="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-indigo-600 hover:border-slate-300 transition-colors cursor-pointer shadow-2xs"
               title="Volver arriba"
               aria-label="Volver arriba"
             >

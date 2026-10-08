@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type { FC } from 'react';
 import { Calculator, Check, Clock, Send } from 'lucide-react';
 
 interface BudgetEstimatorProps {
@@ -21,7 +22,7 @@ interface AddonOption {
   description: string;
 }
 
-export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimate }) => {
+export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) => {
   const projectTypes: ProjectTypeOption[] = [
     {
       id: 'landing',
@@ -144,33 +145,33 @@ export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimat
   };
 
   return (
-    <section id="calculadora" className="py-24 relative scroll-mt-20">
+    <section id="calculadora" className="py-24 relative scroll-mt-20 bg-slate-50/70 border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-800/60 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Calculator className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-xs font-semibold uppercase tracking-wider mb-4 shadow-xs">
+            <Calculator className="w-3.5 h-3.5 text-cyan-600" />
             Cotizador Interactivo
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
             Calcula el presupuesto de tu web{' '}
-            <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
               en 1 minuto
             </span>
           </h2>
-          <p className="mt-4 text-slate-300 text-base sm:text-lg">
+          <p className="mt-4 text-slate-600 text-base sm:text-lg">
             Selecciona el tipo de proyecto y los complementos que necesitas para obtener una estimación transparente e instantánea.
           </p>
         </div>
 
         {/* Calculator Main Box */}
-        <div className="rounded-3xl bg-slate-900/90 border border-slate-800 p-6 sm:p-10 shadow-2xl shadow-black/50">
+        <div className="rounded-3xl bg-white border border-slate-200 p-6 sm:p-10 shadow-xl shadow-slate-200/50">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Options selection (Left col) */}
             <div className="lg:col-span-7 space-y-8">
               {/* Step 1: Project Type */}
               <div>
-                <label className="block text-sm font-bold uppercase tracking-wider text-slate-300 mb-3">
+                <label className="block text-sm font-bold uppercase tracking-wider text-slate-900 mb-3">
                   1. ¿Qué tipo de proyecto necesitas?
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -183,17 +184,17 @@ export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimat
                         onClick={() => setSelectedType(type.id)}
                         className={`text-left p-4 rounded-xl border transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-indigo-950/60 border-indigo-500 text-white shadow-md shadow-indigo-900/30 ring-1 ring-indigo-500'
-                            : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white'
+                            ? 'bg-indigo-50/60 border-indigo-500 text-slate-900 shadow-sm ring-1 ring-indigo-500'
+                            : 'bg-slate-50/60 border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-100/60'
                         }`}
                       >
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="font-bold text-sm sm:text-base">{type.name}</span>
-                          <span className="text-xs font-mono font-semibold text-cyan-400">
+                          <span className="font-bold text-sm sm:text-base text-slate-900">{type.name}</span>
+                          <span className="text-xs font-mono font-bold text-indigo-600">
                             desde ${type.basePrice}
                           </span>
                         </div>
-                        <p className="text-xs text-slate-400 leading-relaxed">
+                        <p className="text-xs text-slate-600 leading-relaxed">
                           {type.description}
                         </p>
                       </button>
@@ -204,7 +205,7 @@ export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimat
 
               {/* Step 2: Addons */}
               <div>
-                <label className="block text-sm font-bold uppercase tracking-wider text-slate-300 mb-3">
+                <label className="block text-sm font-bold uppercase tracking-wider text-slate-900 mb-3">
                   2. Agrega complementos opcionales:
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -216,28 +217,28 @@ export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimat
                         onClick={() => toggleAddon(addon.id)}
                         className={`p-3 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-all ${
                           isChecked
-                            ? 'bg-slate-800/80 border-cyan-500/60 text-white'
-                            : 'bg-slate-950/40 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                            ? 'bg-indigo-50/50 border-indigo-400 text-slate-900 shadow-2xs'
+                            : 'bg-slate-50/50 border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-100/60'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <div
                             className={`w-5 h-5 rounded-md flex items-center justify-center border transition-colors ${
                               isChecked
-                                ? 'bg-cyan-500 border-cyan-400 text-slate-950'
-                                : 'border-slate-700 bg-slate-900'
+                                ? 'bg-indigo-600 border-indigo-600 text-white'
+                                : 'border-slate-300 bg-white'
                             }`}
                           >
                             {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                           </div>
                           <div>
-                            <div className="text-xs sm:text-sm font-medium text-slate-200">
+                            <div className="text-xs sm:text-sm font-semibold text-slate-900">
                               {addon.name}
                             </div>
-                            <div className="text-[11px] text-slate-400">{addon.description}</div>
+                            <div className="text-[11px] text-slate-500">{addon.description}</div>
                           </div>
                         </div>
-                        <span className="text-xs font-mono font-semibold text-emerald-400 shrink-0">
+                        <span className="text-xs font-mono font-bold text-emerald-600 shrink-0">
                           +${addon.price}
                         </span>
                       </div>
@@ -247,12 +248,12 @@ export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimat
               </div>
 
               {/* Step 3: Urgency toggle */}
-              <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between gap-4">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-4">
                 <div>
-                  <span className="text-sm font-bold text-white block">
+                  <span className="text-sm font-bold text-slate-900 block">
                     Modalidad Express / Entrega Prioritaria
                   </span>
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-slate-600">
                     Reduce el plazo de entrega ~35% dedicando horas exclusivas. (+25%)
                   </span>
                 </div>
@@ -260,11 +261,11 @@ export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimat
                   type="button"
                   onClick={() => setIsExpress(!isExpress)}
                   className={`w-12 h-6 rounded-full transition-colors relative cursor-pointer ${
-                    isExpress ? 'bg-cyan-500' : 'bg-slate-800'
+                    isExpress ? 'bg-indigo-600' : 'bg-slate-300'
                   }`}
                 >
                   <span
-                    className={`block w-4 h-4 rounded-full bg-white transition-transform ${
+                    className={`block w-4 h-4 rounded-full bg-white shadow-xs transition-transform ${
                       isExpress ? 'translate-x-7' : 'translate-x-1'
                     }`}
                   />
@@ -274,54 +275,54 @@ export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimat
 
             {/* Live Summary Card (Right col) */}
             <div className="lg:col-span-5 sticky top-28">
-              <div className="rounded-2xl bg-gradient-to-b from-slate-950 to-slate-900 border border-indigo-500/40 p-6 sm:p-7 shadow-xl shadow-indigo-950/30">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">
+              <div className="rounded-2xl bg-gradient-to-b from-indigo-50/50 via-white to-slate-50 border border-indigo-200 p-6 sm:p-7 shadow-lg shadow-indigo-100">
+                <div className="flex items-center justify-between pb-4 border-b border-slate-200">
+                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-700">
                     Resumen Estimado
                   </span>
-                  <span className="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2.5 py-0.5 rounded-full">
+                  <span className="text-xs font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-semibold">
                     Aproximado
                   </span>
                 </div>
 
                 {/* Selected item breakdown */}
-                <div className="py-4 space-y-3 text-xs sm:text-sm text-slate-300 border-b border-slate-800">
+                <div className="py-4 space-y-3 text-xs sm:text-sm text-slate-700 border-b border-slate-200">
                   <div className="flex justify-between">
-                    <span className="text-slate-400">{currentType.name}</span>
-                    <span className="font-mono font-semibold">${currentType.basePrice}</span>
+                    <span className="text-slate-600">{currentType.name}</span>
+                    <span className="font-mono font-bold text-slate-900">${currentType.basePrice}</span>
                   </div>
 
                   {selectedAddons.length > 0 && (
                     <div className="flex justify-between">
-                      <span className="text-slate-400">
+                      <span className="text-slate-600">
                         {selectedAddons.length} complementos seleccionados
                       </span>
-                      <span className="font-mono font-semibold">+${addonsTotal}</span>
+                      <span className="font-mono font-bold text-emerald-600">+${addonsTotal}</span>
                     </div>
                   )}
 
                   {isExpress && (
-                    <div className="flex justify-between text-cyan-300">
+                    <div className="flex justify-between text-indigo-700 font-medium">
                       <span>Recargo entrega Express (+25%)</span>
-                      <span className="font-mono font-semibold">Incluido</span>
+                      <span className="font-mono font-bold">Incluido</span>
                     </div>
                   )}
                 </div>
 
                 {/* Total Price Display */}
                 <div className="py-6 text-center">
-                  <div className="text-xs text-slate-400 uppercase font-semibold tracking-wider">
+                  <div className="text-xs text-slate-500 uppercase font-semibold tracking-wider">
                     Inversión Estimada
                   </div>
-                  <div className="text-4xl sm:text-5xl font-black text-white mt-1">
-                    <span className="text-cyan-400 text-3xl font-extrabold">$</span>
+                  <div className="text-4xl sm:text-5xl font-black text-slate-900 mt-1">
+                    <span className="text-indigo-600 text-3xl font-extrabold">$</span>
                     {rawTotal}
-                    <span className="text-xs text-slate-400 font-normal ml-1">USD</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">USD</span>
                   </div>
 
                   {/* Delivery timeframe */}
-                  <div className="inline-flex items-center gap-1.5 text-xs text-slate-300 bg-slate-800/80 px-3 py-1.5 rounded-full mt-3">
-                    <Clock className="w-3.5 h-3.5 text-cyan-400" />
+                  <div className="inline-flex items-center gap-1.5 text-xs text-slate-700 bg-white border border-slate-200 px-3 py-1.5 rounded-full mt-3 shadow-xs">
+                    <Clock className="w-3.5 h-3.5 text-indigo-600" />
                     <span>
                       Tiempo estimado: <strong>~{totalDays} días hábiles</strong>
                     </span>
@@ -332,13 +333,13 @@ export const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({ onApplyEstimat
                 <button
                   type="button"
                   onClick={handleSendToContact}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 shadow-lg shadow-indigo-600/30 transition-all cursor-pointer transform hover:-translate-y-0.5 text-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 via-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 shadow-md shadow-indigo-600/20 transition-all cursor-pointer transform hover:-translate-y-0.5 text-sm"
                 >
                   <Send className="w-4 h-4" />
                   <span>Cotizar con esta Configuración</span>
                 </button>
 
-                <p className="text-[11px] text-slate-400 text-center mt-3">
+                <p className="text-[11px] text-slate-500 text-center mt-3">
                   * El valor final se confirmará tras revisar los requerimientos específicos de tu proyecto.
                 </p>
               </div>

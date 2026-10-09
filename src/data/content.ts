@@ -175,62 +175,64 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: "landing-express",
     name: "Landing Express",
-    description: "Ideal para profesionales, marcas personales o lanzamientos que necesitan captar clientes rápido.",
-    price: "$299",
+    description: "Ideal para profesionales, marcas personales o lanzamientos que necesitan captar clientes por WhatsApp rápidamente.",
+    price: "$120",
     period: "pago único",
-    deliveryTime: "Entrega en 5 a 7 días hábiles",
+    deliveryTime: "Entrega en 4 a 6 días hábiles",
     features: [
       "Diseño exclusivo de 1 página (One-Page)",
-      "Hasta 5 secciones estratégicas",
+      "Hasta 5 secciones estratégicas de alto impacto",
       "100% Responsive (Móvil, Tablet, PC)",
-      "Botón directo de WhatsApp & Formulario",
-      "Velocidad optimizada (Lighthouse > 95)",
-      "Configuración de Dominio y Hosting",
+      "Botón directo de WhatsApp & Formulario funcional",
+      "Carga ultrarrápida (desplegada en Vercel)",
+      "Hosting en la nube sin costo mensual de servidor",
       "15 días de soporte y ajustes incluidos"
     ],
     nonFeatures: [
-      "Panel de administración / Blog",
-      "Pasarela de pagos en línea"
+      "Panel de autogestión de contenidos",
+      "Múltiples páginas internas"
     ],
     ctaText: "Elegir Landing Express",
   },
   {
     id: "web-corporativa",
     name: "Web Corporativa Pro",
-    description: "La solución completa para empresas que buscan una presencia digital sólida, profesional y con SEO.",
-    price: "$599",
+    description: "La solución completa para empresas y negocios que buscan credibilidad, presencia sólida en Google y más clientes.",
+    price: "$200",
     period: "pago único",
     popular: true,
-    deliveryTime: "Entrega en 10 a 14 días hábiles",
+    deliveryTime: "Entrega en 8 a 12 días hábiles",
     features: [
       "Sitio web multi-página (hasta 5 páginas internas)",
-      "Diseño UI/UX a medida con animaciones",
-      "Optimización SEO avanzada para Google",
-      "Formularios dinámicos con aviso a correo/CRM",
+      "Diseño UI/UX formal y personalizado a tu marca",
+      "Optimización SEO para destacar en Google",
+      "Formularios de contacto conectados a correo y WhatsApp",
       "Integración de Google Analytics & Search Console",
-      "Conexión con redes sociales y WhatsApp",
-      "Carga ultrarrápida con React + Tailwind",
+      "Alojamiento en la nube sin costo mensual de servidor",
       "30 días de garantía y soporte técnico"
+    ],
+    nonFeatures: [
+      "Panel de autogestión de base de datos"
     ],
     ctaText: "Elegir Web Corporativa",
   },
   {
-    id: "app-custom",
-    name: "A Medida / Web App",
-    description: "Para plataformas que requieren lógica avanzada, usuarios, pagos o funciones personalizadas.",
-    price: "$999+",
-    period: "cotización a medida",
-    deliveryTime: "Entrega en 3 a 5 semanas",
+    id: "web-administrable",
+    name: "Web Administrable (CMS)",
+    description: "Para negocios que necesitan actualizar su propio catálogo, precios, artículos o contenidos sin depender de un programador.",
+    price: "$350",
+    period: "pago único",
+    deliveryTime: "Entrega en 2 a 3 semanas",
     features: [
-      "Todo lo de Web Corporativa",
-      "Base de datos y Backend a medida",
-      "Autenticación segura y panel de control (Dashboard)",
-      "Pasarelas de pago (Stripe, Mercado Pago)",
-      "Integraciones con APIs de terceros",
-      "Arquitectura escalable en la nube",
-      "60 días de soporte post-lanzamiento"
+      "Estructura web multi-página completa y personalizada",
+      "Panel administrativo intuitivo para editar textos, fotos y productos",
+      "Catálogo dinámico de productos/servicios con pedido a WhatsApp",
+      "Base de datos y backend ligero optimizado",
+      "SEO avanzado y carga instantánea",
+      "Capacitación en video para enseñarte a usar tu panel",
+      "45 días de soporte técnico y acompañamiento"
     ],
-    ctaText: "Cotizar Proyecto a Medida",
+    ctaText: "Elegir Web Administrable",
   }
 ];
 
@@ -240,26 +242,30 @@ export const testimonialsData: Testimonial[] = [];
 export const faqData: FaqItem[] = [
   {
     question: "¿Cuánto tiempo toma tener mi web lista?",
-    answer: "Una Landing Page suele estar lista en 5 a 7 días hábiles. Un sitio web corporativo de varias secciones toma entre 10 y 14 días, mientras que aplicaciones web complejas o tiendas online toman de 3 a 5 semanas según las funciones requeridas."
+    answer: "Una Landing Express suele estar lista en 4 a 6 días hábiles. Un sitio web corporativo de varias secciones toma entre 8 y 12 días hábiles, mientras que un sitio administrable o catálogo interactivo toma de 2 a 3 semanas según la cantidad de contenidos."
   },
   {
     question: "¿Por qué utilizar React + Vite + Tailwind en vez de WordPress?",
-    answer: "A diferencia de WordPress con constructores lentos y plugins pesados que son vulnerables a hackeos, una web desarrollada con React + Vite + Tailwind ofrece velocidades de carga instantáneas (< 1s), puntuaciones perfectas en Google (100% SEO), seguridad absoluta y un diseño 100% personalizado sin limitaciones."
+    answer: "A diferencia de WordPress con constructores lentos y plugins pesados que son vulnerables a hackeos y requieren servidores costosos, una web desarrollada con React + Vite + Tailwind ofrece velocidades de carga instantáneas (< 1s), puntuaciones perfectas en Google (100% SEO), seguridad absoluta y $0 en costos mensuales de hosting para tu negocio."
   },
   {
     question: "¿El sitio web se verá bien en teléfonos móviles?",
     answer: "¡Totalmente! Todos mis desarrollos siguen la filosofía Mobile-First. Tu sitio web se adaptará con total fluidez a smartphones de cualquier tamaño, tablets, laptops y pantallas gigantes."
   },
   {
-    question: "¿Cómo se gestiona el hosting y el dominio?",
-    answer: "Puedo encargarme de toda la configuración técnica. Recomiendo y configuro plataformas de hosting en la nube de alta disponibilidad como Vercel o Netlify (muchas veces con plan gratuito suficiente para empezar), y te oriento en la compra de tu dominio (.com, .es, etc.)."
+    question: "¿Cómo se gestiona el hosting y el dominio? ¿Hay mensualidades?",
+    answer: "Me encargo de toda la configuración técnica. Alojo tu proyecto en Vercel, una plataforma en la nube de nivel mundial con plan gratuito sin costo mensual de servidor ($0/mes en infraestructura). El único gasto que realiza el cliente es la compra anual de su dominio (.com), en el cual te asesoro paso a paso."
   },
   {
-    question: "¿Cómo es el proceso de pago?",
-    answer: "Normalmente trabajamos con un anticipo del 50% al comenzar el proyecto para reservar agenda y arrancar el desarrollo, y el 50% restante al finalizar las pruebas y antes de la entrega final del dominio y código."
+    question: "¿Cómo es el proceso de pago y qué métodos aceptas en Venezuela?",
+    answer: "Trabajamos con un anticipo del 50% para reservar agenda e iniciar el desarrollo, y el 50% restante una vez que revises y apruebes la web antes de la entrega final. Para adaptarnos a Venezuela, aceptamos: Pago Móvil / Transferencia en Bolívares (a tasa acordada), Binance USDT, Zinli, Zelle y efectivo en divisas."
   },
   {
     question: "¿Tendré soporte después de que se entregue la web?",
-    answer: "Sí. Todos los paquetes incluyen un periodo de garantía y soporte técnico gratuito (de 15 a 60 días según el plan) para resolver cualquier duda, corregir ajustes o brindar asesoría."
+    answer: "Sí. Todos los paquetes incluyen un periodo de garantía y soporte técnico gratuito (de 15 a 45 días según el plan) para resolver cualquier duda, corregir ajustes o brindar asesoría técnica."
+  },
+  {
+    question: "¿Hay costos de mantenimiento obligatorios?",
+    answer: "No hay mensualidades obligatorias. Tu web es 100% tuya una vez entregada y funciona de manera autónoma sin costos ocultos. Si en el futuro deseas que yo agregue nuevas secciones, actualice contenidos o brinde soporte continuo, ofrezco planes opcionales de mantenimiento mensual muy accesibles."
   }
 ];

@@ -25,8 +25,8 @@ export const Contact: FC<ContactProps> = ({
     name: '',
     email: '',
     phone: '',
-    projectType: 'Landing Page de Alta Conversión',
-    budget: '$300 - $600 USD',
+    projectType: 'Landing Express ($120)',
+    budget: '$120 - $200 USD',
     message: '',
   });
 
@@ -266,7 +266,7 @@ export const Contact: FC<ContactProps> = ({
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+34 600 000 000"
+                        placeholder="+58 412 000 0000"
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors"
                       />
                     </div>
@@ -282,12 +282,15 @@ export const Contact: FC<ContactProps> = ({
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors cursor-pointer"
                       >
-                        <option value="Landing Page de Alta Conversión">Landing Page de Alta Conversión</option>
-                        <option value="Sitio Web Corporativo Pro">Sitio Web Corporativo Pro</option>
-                        <option value="Tienda Online / E-Commerce">Tienda Online / E-Commerce</option>
-                        <option value="Aplicación Web / Panel SaaS">Aplicación Web / Panel SaaS</option>
+                        <option value="Landing Express ($120)">Landing Express ($120)</option>
+                        <option value="Sitio Web Corporativo Pro ($200)">Sitio Web Corporativo Pro ($200)</option>
+                        <option value="Web Administrable con CMS ($350)">Web Administrable con CMS ($350)</option>
+                        <option value="Catálogo con Pedidos a WhatsApp ($280)">Catálogo con Pedidos a WhatsApp ($280)</option>
                         <option value="Optimización de Velocidad & SEO">Optimización de Velocidad & SEO</option>
                         <option value="Mantenimiento o Consulta General">Mantenimiento o Consulta General</option>
+                        {!['Landing Express ($120)', 'Sitio Web Corporativo Pro ($200)', 'Web Administrable con CMS ($350)', 'Catálogo con Pedidos a WhatsApp ($280)', 'Optimización de Velocidad & SEO', 'Mantenimiento o Consulta General'].includes(formData.projectType) && formData.projectType && (
+                          <option value={formData.projectType}>{formData.projectType}</option>
+                        )}
                       </select>
                     </div>
                   </div>
@@ -303,10 +306,10 @@ export const Contact: FC<ContactProps> = ({
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors cursor-pointer"
                     >
-                      <option value="Menos de $300 USD">Menos de $300 USD</option>
-                      <option value="$300 - $600 USD">$300 - $600 USD (Landing Express / Web Inicial)</option>
-                      <option value="$600 - $1,200 USD">$600 - $1,200 USD (Web Corporativa Pro)</option>
-                      <option value="Más de $1,200 USD">Más de $1,200 USD (E-commerce o App a medida)</option>
+                      <option value="Menos de $150 USD">Menos de $150 USD (Landing Express)</option>
+                      <option value="$150 - $250 USD">$150 - $250 USD (Web Corporativa Pro)</option>
+                      <option value="$250 - $400 USD">$250 - $400 USD (Web Administrable / Catálogo)</option>
+                      <option value="Más de $400 USD">Más de $400 USD (Proyecto personalizado o con extras)</option>
                     </select>
                   </div>
 

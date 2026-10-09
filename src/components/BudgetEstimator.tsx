@@ -26,31 +26,31 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
   const projectTypes: ProjectTypeOption[] = [
     {
       id: 'landing',
-      name: 'Landing Page de Alta Conversión',
-      basePrice: 299,
-      baseDays: 6,
-      description: 'Ideal para productos, servicios o captación rápida de leads.'
+      name: 'Landing Express',
+      basePrice: 120,
+      baseDays: 5,
+      description: 'Ideal para productos, marcas personales o captación directa a WhatsApp.'
     },
     {
       id: 'corporate',
-      name: 'Sitio Web Corporativo Multi-página',
-      basePrice: 599,
-      baseDays: 12,
-      description: 'Presencia formal completa (Inicio, Nosotros, Servicios, Contacto, etc.).'
+      name: 'Sitio Web Corporativo Pro',
+      basePrice: 200,
+      baseDays: 10,
+      description: 'Presencia formal multi-página (Inicio, Nosotros, Servicios, Contacto, etc.).'
     },
     {
       id: 'ecommerce',
-      name: 'Tienda Online / E-Commerce',
-      basePrice: 799,
-      baseDays: 18,
-      description: 'Catálogo de productos, carrito de compras y pasarela de pago.'
+      name: 'Catálogo Digital con Pedidos a WhatsApp',
+      basePrice: 280,
+      baseDays: 14,
+      description: 'Catálogo dinámico con carrito y botón de pedido directo a WhatsApp o Pago Móvil.'
     },
     {
       id: 'webapp',
-      name: 'Aplicación Web / Panel SaaS',
-      basePrice: 1190,
-      baseDays: 25,
-      description: 'Lógica a medida, base de datos, dashboard y gestión de usuarios.'
+      name: 'Web Administrable (CMS) / Sistema a Medida',
+      basePrice: 350,
+      baseDays: 18,
+      description: 'Panel intuitivo para actualizar catálogo, fotos, precios y contenidos sin tocar código.'
     }
   ];
 
@@ -58,44 +58,44 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
     {
       id: 'multilang',
       name: 'Multi-idioma (ej. ES + EN)',
-      price: 80,
+      price: 35,
       days: 2,
-      description: 'Traducción y conmutador de idiomas.'
+      description: 'Traducción estructurada y conmutador de idiomas.'
     },
     {
       id: 'blog',
-      name: 'Blog / Gestor de Contenidos',
-      price: 120,
-      days: 3,
-      description: 'Publicación de artículos para posicionamiento orgánico.'
+      name: 'Sección Blog / Noticias',
+      price: 45,
+      days: 2,
+      description: 'Publicación de artículos para posicionamiento orgánico en Google.'
     },
     {
       id: 'payments',
-      name: 'Pasarela de Pagos (Stripe / PayPal)',
-      price: 150,
-      days: 3,
-      description: 'Cobros automáticos con tarjetas de crédito/débito.'
+      name: 'Botón de Pago / WhatsApp Checkout',
+      price: 40,
+      days: 2,
+      description: 'Integración para pedidos automáticos a WhatsApp, Pago Móvil o Binance.'
     },
     {
       id: 'seo_pack',
-      name: 'Pack SEO Avanzado & Schema',
-      price: 90,
-      days: 2,
-      description: 'Meta-tags estructurados, Google Search Console y sitemap.'
+      name: 'Pack SEO Local & Google Maps',
+      price: 30,
+      days: 1,
+      description: 'Indexación en Google Search Console, ficha de Google Maps y meta-tags.'
     },
     {
       id: 'auth_users',
-      name: 'Módulo de Usuarios y Login',
-      price: 190,
-      days: 4,
-      description: 'Registro seguro, recuperación de contraseña y perfiles.'
+      name: 'Módulo de Clientes / Login',
+      price: 60,
+      days: 3,
+      description: 'Registro seguro, perfiles de usuario y accesos protegidos.'
     },
     {
       id: 'analytics_meta',
-      name: 'Píxeles de Anuncios & Conversión',
-      price: 60,
+      name: 'Píxeles de Meta Ads + Google Analytics',
+      price: 25,
       days: 1,
-      description: 'Configuración de Meta Pixel, Google Tag Manager y eventos.'
+      description: 'Medición de conversiones, clics en WhatsApp y analítica web.'
     }
   ];
 
@@ -127,7 +127,7 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
   let totalDays = currentType.baseDays + addonsDays;
 
   if (isExpress) {
-    rawTotal = Math.round(rawTotal * 1.25);
+    rawTotal = Math.round(rawTotal * 1.20);
     totalDays = Math.max(3, Math.round(totalDays * 0.65));
   }
 

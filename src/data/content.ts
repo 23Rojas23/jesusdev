@@ -14,7 +14,7 @@ export const personalInfo = {
   location: "Valencia, Venezuela",
   availableForHire: true,
   averageLoadTime: "< 0.8s",
-  github: "https://github.com",
+  github: "https://github.com/23Rojas23",
   linkedin: "https://linkedin.com",
   twitter: "https://twitter.com",
   calendly: "https://calendly.com",

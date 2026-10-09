@@ -13,14 +13,12 @@ export const Footer: FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-200">
           {/* Brand col */}
           <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-500 p-0.5 shadow-xs">
-                <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
-                  <Code2 className="w-4 h-4 text-indigo-600" />
-                </div>
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center shadow-xs">
+                <Code2 className="w-4 h-4" />
               </div>
-              <span className="font-bold text-lg text-slate-900">
-                &lt;{personalInfo.brandName} /&gt;
+              <span className="font-bold text-base text-slate-900">
+                {personalInfo.brandName}
               </span>
             </div>
             <p className="text-slate-600 text-xs sm:text-sm max-w-sm leading-relaxed">
@@ -80,11 +78,6 @@ export const Footer: FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#proyectos" className="hover:text-indigo-600 transition-colors">
-                  Portafolio & Casos de Éxito
-                </a>
-              </li>
-              <li>
                 <a href="#tecnologias" className="hover:text-indigo-600 transition-colors">
                   Tecnologías & Ventajas
                 </a>
@@ -99,6 +92,16 @@ export const Footer: FC = () => {
                   Calculadora de Presupuesto
                 </a>
               </li>
+              <li>
+                <a href="#precios" className="hover:text-indigo-600 transition-colors">
+                  Planes & Paquetes
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="hover:text-indigo-600 transition-colors">
+                  Preguntas Frecuentes
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -109,8 +112,8 @@ export const Footer: FC = () => {
             </h4>
             <div className="p-4 rounded-2xl bg-white border border-slate-200 space-y-2 shadow-2xs">
               <div className="flex items-center gap-2 text-xs text-emerald-700 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Abierto a nuevos clientes</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span>Abierto a nuevos proyectos</span>
               </div>
               <p className="text-xs text-slate-600">
                 Aceptando proyectos para este mes. Agenda tu reunión previa para reservar cupo en el calendario.

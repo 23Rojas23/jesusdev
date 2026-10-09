@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { FC } from 'react';
-import { Calculator, Check, Clock, Send } from 'lucide-react';
+import { Check, Clock, Send } from 'lucide-react';
 
 interface BudgetEstimatorProps {
   onApplyEstimate: (estimateSummary: string, priceEstimate: number) => void;
@@ -145,27 +145,23 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
   };
 
   return (
-    <section id="calculadora" className="py-24 relative scroll-mt-20 bg-slate-50/70 border-y border-slate-200">
+    <section id="calculadora" className="py-20 md:py-24 relative scroll-mt-20 bg-white border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-xs font-semibold uppercase tracking-wider mb-4 shadow-xs">
-            <Calculator className="w-3.5 h-3.5 text-cyan-600" />
-            Cotizador Interactivo
+          <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
+            Estimador de Presupuesto
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Calcula el presupuesto de tu web{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              en 1 minuto
-            </span>
+            Calcula la estimación de tu proyecto
           </h2>
-          <p className="mt-4 text-slate-600 text-base sm:text-lg">
-            Selecciona el tipo de proyecto y los complementos que necesitas para obtener una estimación transparente e instantánea.
+          <p className="mt-3 text-slate-600 text-base sm:text-lg">
+            Selecciona el tipo de web y los complementos que necesitas para obtener un cálculo transparente de referencia.
           </p>
         </div>
 
         {/* Calculator Main Box */}
-        <div className="rounded-3xl bg-white border border-slate-200 p-6 sm:p-10 shadow-xl shadow-slate-200/50">
+        <div className="rounded-2xl bg-slate-50/70 border border-slate-200/90 p-6 sm:p-10 shadow-2xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Options selection (Left col) */}
             <div className="lg:col-span-7 space-y-8">
@@ -275,13 +271,13 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
 
             {/* Live Summary Card (Right col) */}
             <div className="lg:col-span-5 sticky top-28">
-              <div className="rounded-2xl bg-gradient-to-b from-indigo-50/50 via-white to-slate-50 border border-indigo-200 p-6 sm:p-7 shadow-lg shadow-indigo-100">
+              <div className="rounded-2xl bg-white border border-slate-200 p-6 sm:p-7 shadow-sm">
                 <div className="flex items-center justify-between pb-4 border-b border-slate-200">
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-700">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
                     Resumen Estimado
                   </span>
-                  <span className="text-xs font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-semibold">
-                    Aproximado
+                  <span className="text-xs font-mono text-slate-700 bg-slate-100 border border-slate-200 px-2.5 py-0.5 rounded-full font-semibold">
+                    Referencial
                   </span>
                 </div>
 
@@ -297,7 +293,7 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
                       <span className="text-slate-600">
                         {selectedAddons.length} complementos seleccionados
                       </span>
-                      <span className="font-mono font-bold text-emerald-600">+${addonsTotal}</span>
+                      <span className="font-mono font-bold text-slate-900">+${addonsTotal}</span>
                     </div>
                   )}
 
@@ -321,8 +317,8 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
                   </div>
 
                   {/* Delivery timeframe */}
-                  <div className="inline-flex items-center gap-1.5 text-xs text-slate-700 bg-white border border-slate-200 px-3 py-1.5 rounded-full mt-3 shadow-xs">
-                    <Clock className="w-3.5 h-3.5 text-indigo-600" />
+                  <div className="inline-flex items-center gap-1.5 text-xs text-slate-700 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full mt-3">
+                    <Clock className="w-3.5 h-3.5 text-slate-500" />
                     <span>
                       Tiempo estimado: <strong>~{totalDays} días hábiles</strong>
                     </span>
@@ -333,7 +329,7 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
                 <button
                   type="button"
                   onClick={handleSendToContact}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 via-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 shadow-md shadow-indigo-600/20 transition-all cursor-pointer transform hover:-translate-y-0.5 text-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-xs hover:shadow transition-all cursor-pointer text-sm"
                 >
                   <Send className="w-4 h-4" />
                   <span>Cotizar con esta Configuración</span>

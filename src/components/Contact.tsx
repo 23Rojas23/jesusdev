@@ -6,11 +6,9 @@ import {
   Phone,
   MapPin,
   Send,
-  MessageSquare,
   CheckCircle2,
   Copy,
   Calendar,
-  Sparkles,
   ExternalLink,
 } from 'lucide-react';
 
@@ -77,21 +75,17 @@ export const Contact: FC<ContactProps> = ({
   };
 
   return (
-    <section id="contacto" className="py-24 relative scroll-mt-20 bg-slate-50/70 border-t border-slate-200">
+    <section id="contacto" className="py-20 md:py-24 relative scroll-mt-20 bg-slate-50/70 border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold uppercase tracking-wider mb-4 shadow-xs">
-            <MessageSquare className="w-3.5 h-3.5 text-indigo-600" />
-            Hablemos de tu Proyecto
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
+            Contacto Directo
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-            ¿Listo para llevar tu negocio al{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              siguiente nivel?
-            </span>
+            Hablemos de tu próximo sitio web
           </h2>
-          <p className="mt-4 text-slate-600 text-base sm:text-lg">
+          <p className="mt-3 text-slate-600 text-base sm:text-lg">
             Completa el formulario o escríbeme directamente. Responderé en menos de 24 horas con una propuesta a tu medida.
           </p>
         </div>
@@ -184,11 +178,11 @@ export const Contact: FC<ContactProps> = ({
               </div>
             </div>
 
-            {/* Response Time Guarantee */}
-            <div className="p-5 rounded-2xl bg-indigo-50 border border-indigo-200/80 text-xs sm:text-sm text-slate-700 flex items-start gap-3 shadow-xs">
-              <Sparkles className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+            {/* Response Time Note */}
+            <div className="p-4 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-600 flex items-start gap-3 shadow-2xs">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-slate-900">Respuesta garantizada en 24 horas:</strong> Recibirás un desglose preliminar de cómo estructurar tu proyecto y un presupuesto personalizado sin compromiso.
+                <strong className="text-slate-900 font-semibold">Respuesta en menos de 24 horas:</strong> Recibirás orientación clara sobre la mejor estructura para tu web y una propuesta personalizada.
               </div>
             </div>
           </div>
@@ -336,7 +330,7 @@ export const Contact: FC<ContactProps> = ({
                   <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                     <button
                       type="submit"
-                      className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 via-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 shadow-md shadow-indigo-600/20 transition-all cursor-pointer transform hover:-translate-y-0.5 text-sm"
+                      className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-xs hover:shadow transition-all cursor-pointer text-sm"
                     >
                       <Send className="w-4 h-4" />
                       <span>Enviar Solicitud de Cotización</span>

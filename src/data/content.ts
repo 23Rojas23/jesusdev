@@ -7,6 +7,7 @@ export const personalInfo = {
   tagline: "Desarrollo sitios web modernos, rápidos y optimizados con React y Tailwind CSS.",
   bio: "Desarrollador web enfocado en la creación de landing pages y sitios web modernos. Comprometido con el código limpio, las mejores prácticas y el aprendizaje continuo.",
   email: "jesusenrique230701@gmail.com",
+  formSubmitToken: "a9cbe227996e04f4fa94334a5080c4e0",
   phone: "+58 412 969 3441",
   whatsappNumber: "584129693441",
   whatsappMessage: "¡Hola Jesus! Me gustaría consultar sobre un desarrollo web.",

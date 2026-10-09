@@ -74,7 +74,8 @@ export const Contact: FC<ContactProps> = ({
     setErrorMessage(null);
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
+      const formTarget = personalInfo.formSubmitToken || personalInfo.email;
+      const response = await fetch(`https://formsubmit.co/ajax/${formTarget}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -263,7 +264,12 @@ export const Contact: FC<ContactProps> = ({
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form
+                  action={`https://formsubmit.co/${personalInfo.formSubmitToken || personalInfo.email}`}
+                  method="POST"
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Name */}
                     <div>

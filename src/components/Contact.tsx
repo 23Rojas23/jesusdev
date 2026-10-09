@@ -10,6 +10,8 @@ import {
   Copy,
   Calendar,
   ExternalLink,
+  Loader2,
+  AlertCircle,
 } from 'lucide-react';
 
 interface ContactProps {
@@ -32,6 +34,8 @@ export const Contact: FC<ContactProps> = ({
 
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (initialServiceOrPlan) {
@@ -64,9 +68,45 @@ export const Contact: FC<ContactProps> = ({
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsLoading(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: `Nueva Solicitud de Cotización: ${formData.name || 'Cliente'} - JesusDev`,
+          Nombre: formData.name,
+          Email: formData.email,
+          'Teléfono / WhatsApp': formData.phone || 'No especificado',
+          'Tipo de Servicio': formData.projectType,
+          'Presupuesto Estimado': formData.budget,
+          Mensaje: formData.message,
+          _template: 'table',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok || data.success === 'true' || data.success === true) {
+        setIsSubmitted(true);
+      } else {
+        throw new Error(data.message || 'Error al procesar el mensaje.');
+      }
+    } catch (error) {
+      console.error('Error enviando formulario:', error);
+      setErrorMessage(
+        'Hubo un problema temporal al enviar el correo. Puedes intentar de nuevo o contactarme directamente por WhatsApp.'
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const generateWhatsAppLink = () => {
@@ -212,7 +252,10 @@ export const Contact: FC<ContactProps> = ({
                     </a>
                     <button
                       type="button"
-                      onClick={() => setIsSubmitted(false)}
+                      onClick={() => {
+                        setIsSubmitted(false);
+                        setErrorMessage(null);
+                      }}
                       className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm transition-colors cursor-pointer"
                     >
                       <span>Enviar otro mensaje</span>
@@ -329,14 +372,32 @@ export const Contact: FC<ContactProps> = ({
                     />
                   </div>
 
+                  {/* Error Notification */}
+                  {errorMessage && (
+                    <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn">
+                      <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                      <div className="flex-1 leading-relaxed">{errorMessage}</div>
+                    </div>
+                  )}
+
                   {/* Buttons */}
                   <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                     <button
                       type="submit"
-                      className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-xs hover:shadow transition-all cursor-pointer text-sm"
+                      disabled={isLoading}
+                      className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-70 disabled:cursor-not-allowed shadow-xs hover:shadow transition-all cursor-pointer text-sm"
                     >
-                      <Send className="w-4 h-4" />
-                      <span>Enviar Solicitud de Cotización</span>
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Enviando mensaje...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          <span>Enviar Solicitud de Cotización</span>
+                        </>
+                      )}
                     </button>
 
                     <a

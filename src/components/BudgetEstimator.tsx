@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Check, Clock, Send } from 'lucide-react';
 
 interface BudgetEstimatorProps {
-  onApplyEstimate: (estimateSummary: string, priceEstimate: number) => void;
+  onApplyEstimate: (estimateSummary: string, serviceName?: string, budgetTier?: string) => void;
 }
 
 interface ProjectTypeOption {
@@ -141,7 +141,19 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
       chosenAddonsNames || 'Ninguna'
     } | Modalidad: ${isExpress ? 'Entrega Express Prioritaria' : 'Entrega Estándar'} | Estimado: ~$${rawTotal} USD`;
 
-    onApplyEstimate(summary, rawTotal);
+    let serviceName = 'Landing Express ($120)';
+    if (currentType.id === 'landing') serviceName = 'Landing Express ($120)';
+    else if (currentType.id === 'corporate') serviceName = 'Sitio Web Corporativo Pro ($200)';
+    else if (currentType.id === 'ecommerce') serviceName = 'Catálogo con Pedidos a WhatsApp ($280)';
+    else if (currentType.id === 'webapp') serviceName = 'Web Administrable con CMS ($350)';
+
+    let budgetTier = 'Menos de $150 USD';
+    if (rawTotal <= 150) budgetTier = 'Menos de $150 USD';
+    else if (rawTotal <= 250) budgetTier = '$150 - $250 USD';
+    else if (rawTotal <= 400) budgetTier = '$250 - $400 USD';
+    else budgetTier = 'Más de $400 USD';
+
+    onApplyEstimate(summary, serviceName, budgetTier);
   };
 
   return (

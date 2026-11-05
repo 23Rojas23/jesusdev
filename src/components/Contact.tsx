@@ -16,11 +16,13 @@ import {
 
 interface ContactProps {
   initialServiceOrPlan?: string;
+  initialBudgetTier?: string;
   initialEstimate?: string;
 }
 
 export const Contact: FC<ContactProps> = ({
   initialServiceOrPlan,
+  initialBudgetTier,
   initialEstimate,
 }) => {
   const [formData, setFormData] = useState({
@@ -32,6 +34,8 @@ export const Contact: FC<ContactProps> = ({
     message: '',
   });
 
+  const [honeypot, setHoneypot] = useState('');
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +50,15 @@ export const Contact: FC<ContactProps> = ({
       }));
     }
   }, [initialServiceOrPlan]);
+
+  useEffect(() => {
+    if (initialBudgetTier) {
+      setFormData((prev) => ({
+        ...prev,
+        budget: initialBudgetTier,
+      }));
+    }
+  }, [initialBudgetTier]);
 
   useEffect(() => {
     if (initialEstimate) {
@@ -70,6 +83,20 @@ export const Contact: FC<ContactProps> = ({
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Anti-spam honeypot detection
+    if (honeypot) {
+      setIsSubmitted(true);
+      return;
+    }
+
+    // Rate-limiting / debounce (at least 6 seconds between submissions)
+    const now = Date.now();
+    if (now - lastSubmitTime < 6000) {
+      setErrorMessage('Por favor espera unos segundos antes de enviar otra solicitud.');
+      return;
+    }
+
     setIsLoading(true);
     setErrorMessage(null);
 
@@ -83,12 +110,14 @@ export const Contact: FC<ContactProps> = ({
         },
         body: JSON.stringify({
           _subject: `Nueva Solicitud de Cotización: ${formData.name || 'Cliente'} - JesusDev`,
-          Nombre: formData.name,
-          Email: formData.email,
-          'Teléfono / WhatsApp': formData.phone || 'No especificado',
+          _captcha: 'false',
+          _honey: '',
+          Nombre: formData.name.trim(),
+          Email: formData.email.trim(),
+          'Teléfono / WhatsApp': formData.phone.trim() || 'No especificado',
           'Tipo de Servicio': formData.projectType,
           'Presupuesto Estimado': formData.budget,
-          Mensaje: formData.message,
+          Mensaje: formData.message.trim(),
           _template: 'table',
         }),
       });
@@ -96,6 +125,7 @@ export const Contact: FC<ContactProps> = ({
       const data = await response.json();
 
       if (response.ok || data.success === 'true' || data.success === true) {
+        setLastSubmitTime(Date.now());
         setIsSubmitted(true);
       } else {
         throw new Error(data.message || 'Error al procesar el mensaje.');
@@ -270,16 +300,31 @@ export const Contact: FC<ContactProps> = ({
                   onSubmit={handleSubmit}
                   className="space-y-5"
                 >
+                  {/* Honeypot field (hidden from real users, trap for spam bots) */}
+                  <div className="hidden" aria-hidden="true">
+                    <input
+                      type="text"
+                      name="_honey"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Name */}
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
+                      <label htmlFor="contact-name" className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
                         Tu Nombre o Empresa *
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
                         name="name"
                         required
+                        maxLength={100}
+                        autoComplete="name"
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Ej. Juan Pérez"
@@ -289,13 +334,16 @@ export const Contact: FC<ContactProps> = ({
 
                     {/* Email */}
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
+                      <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
                         Correo Electrónico *
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
                         name="email"
                         required
+                        maxLength={120}
+                        autoComplete="email"
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="juan@empresa.com"
@@ -307,25 +355,30 @@ export const Contact: FC<ContactProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Phone / WhatsApp */}
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
+                      <label htmlFor="contact-phone" className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
                         Teléfono / WhatsApp
                       </label>
                       <input
+                        id="contact-phone"
                         type="tel"
                         name="phone"
+                        maxLength={30}
+                        autoComplete="tel"
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+58 412 000 0000"
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors"
                       />
+                      <p className="mt-1 text-[11px] text-slate-500">Formato local (0412 123 4567) o internacional (+58...)</p>
                     </div>
 
                     {/* Project Type */}
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
+                      <label htmlFor="contact-service" className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
                         Tipo de Servicio
                       </label>
                       <select
+                        id="contact-service"
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleChange}
@@ -346,10 +399,11 @@ export const Contact: FC<ContactProps> = ({
 
                   {/* Budget */}
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
+                    <label htmlFor="contact-budget" className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
                       Presupuesto Estimado
                     </label>
                     <select
+                      id="contact-budget"
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
@@ -364,12 +418,19 @@ export const Contact: FC<ContactProps> = ({
 
                   {/* Message */}
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-2">
-                      Detalles del Proyecto *
-                    </label>
+                    <div className="flex items-center justify-between mb-2">
+                      <label htmlFor="contact-message" className="block text-xs font-bold uppercase tracking-wider text-slate-800">
+                        Detalles del Proyecto *
+                      </label>
+                      <span className="text-[11px] font-mono text-slate-400">
+                        {formData.message.length}/2000
+                      </span>
+                    </div>
                     <textarea
+                      id="contact-message"
                       name="message"
                       required
+                      maxLength={2000}
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}

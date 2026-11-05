@@ -3,10 +3,22 @@ import { pricingPlans } from '../data/content';
 import { Check, X, ArrowRight, Clock, ShieldCheck } from 'lucide-react';
 
 interface PricingProps {
-  onSelectPlan: (planName: string) => void;
+  onSelectPlan: (serviceName: string, budgetTier?: string) => void;
 }
 
 export const Pricing: FC<PricingProps> = ({ onSelectPlan }) => {
+  const handleSelectPlan = (planId: string) => {
+    if (planId === 'landing-express') {
+      onSelectPlan('Landing Express ($120)', 'Menos de $150 USD');
+    } else if (planId === 'web-corporativa') {
+      onSelectPlan('Sitio Web Corporativo Pro ($200)', '$150 - $250 USD');
+    } else if (planId === 'web-administrable') {
+      onSelectPlan('Web Administrable con CMS ($350)', '$250 - $400 USD');
+    } else {
+      onSelectPlan('Landing Express ($120)', 'Menos de $150 USD');
+    }
+  };
+
   return (
     <section id="precios" className="py-20 md:py-24 bg-white border-b border-slate-200/80 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,7 +99,7 @@ export const Pricing: FC<PricingProps> = ({ onSelectPlan }) => {
               {/* Action Button */}
               <div className="pt-4 mt-auto">
                 <button
-                  onClick={() => onSelectPlan(plan.name)}
+                  onClick={() => handleSelectPlan(plan.id)}
                   className={`w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-sm transition-all cursor-pointer ${
                     plan.popular
                       ? 'bg-slate-900 hover:bg-indigo-600 text-white shadow-xs'

@@ -2,6 +2,8 @@ import type { FC } from 'react';
 import { personalInfo } from '../data/content';
 import { Code2, ArrowUp, Heart } from 'lucide-react';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export const Footer: FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -125,7 +127,7 @@ export const Footer: FC = () => {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            &copy; {new Date().getFullYear()} {personalInfo.name} ({personalInfo.brandName}). Todos los derechos reservados.
+            &copy; {CURRENT_YEAR} {personalInfo.name} ({personalInfo.brandName}). Todos los derechos reservados.
           </div>
 
           <div className="flex items-center gap-4">

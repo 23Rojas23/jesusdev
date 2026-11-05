@@ -13,11 +13,15 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 export default function App() {
   const [selectedServiceOrPlan, setSelectedServiceOrPlan] = useState<string | undefined>();
+  const [selectedBudgetTier, setSelectedBudgetTier] = useState<string | undefined>();
   const [estimatedSummary, setEstimatedSummary] = useState<string | undefined>();
 
-  const scrollToContact = (serviceOrPlan?: string) => {
+  const scrollToContact = (serviceOrPlan?: string, budgetTier?: string) => {
     if (serviceOrPlan) {
       setSelectedServiceOrPlan(serviceOrPlan);
+    }
+    if (budgetTier) {
+      setSelectedBudgetTier(budgetTier);
     }
     const contactElem = document.getElementById('contacto');
     if (contactElem) {
@@ -32,8 +36,14 @@ export default function App() {
     }
   };
 
-  const handleApplyEstimate = (summary: string) => {
+  const handleApplyEstimate = (summary: string, serviceName?: string, budgetTier?: string) => {
     setEstimatedSummary(summary);
+    if (serviceName) {
+      setSelectedServiceOrPlan(serviceName);
+    }
+    if (budgetTier) {
+      setSelectedBudgetTier(budgetTier);
+    }
     const contactElem = document.getElementById('contacto');
     if (contactElem) {
       contactElem.scrollIntoView({ behavior: 'smooth' });
@@ -66,7 +76,7 @@ export default function App() {
         <BudgetEstimator onApplyEstimate={handleApplyEstimate} />
 
         {/* 6. Pricing & Packages */}
-        <Pricing onSelectPlan={(plan) => scrollToContact(`Plan ${plan}`)} />
+        <Pricing onSelectPlan={(service, budgetTier) => scrollToContact(service, budgetTier)} />
 
         {/* 7. FAQ */}
         <Faq />
@@ -74,6 +84,7 @@ export default function App() {
         {/* 10. Contact & Proposal Request */}
         <Contact
           initialServiceOrPlan={selectedServiceOrPlan}
+          initialBudgetTier={selectedBudgetTier}
           initialEstimate={estimatedSummary}
         />
       </main>

@@ -80,8 +80,8 @@ export const Footer: FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#tecnologias" className="hover:text-indigo-600 transition-colors">
-                  Tecnologías & Ventajas
+                <a href="#ventajas" className="hover:text-indigo-600 transition-colors">
+                  Ventajas para tu Negocio
                 </a>
               </li>
               <li>

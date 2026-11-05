@@ -33,7 +33,7 @@ export const servicesData: Service[] = [
       "Integración directa con WhatsApp, CRM y correos",
       "Optimización SEO básica y píxeles de seguimiento"
     ],
-    techs: ["React", "Tailwind CSS", "Vite", "TypeScript"],
+    techs: ["Carga < 1s", "100% Móvil", "Ventas WhatsApp", "SEO Google"],
     highlight: true,
   },
   {
@@ -48,64 +48,64 @@ export const servicesData: Service[] = [
       "Estructura optimizada para posicionar en Google (SEO)",
       "Panel para gestionar contenidos o blog opcional"
     ],
-    techs: ["React", "Next.js", "Tailwind CSS", "SEO"]
+    techs: ["Diseño Exclusivo", "Multi-Página", "Google Search", "Dominio Propio"]
   },
   {
     id: "web-apps",
-    title: "Aplicaciones Web & Paneles SaaS",
-    description: "Sistemas web interactivos con lógica de negocio, autenticación, roles de usuario y paneles de administración.",
+    title: "Webs Administrables & Catálogos Dinámicos",
+    description: "Sistemas web interactivos con panel intuitivo para actualizar tus propios productos, precios, fotos o contenidos.",
     iconName: "Layers",
     features: [
-      "Autenticación segura (Login, roles, JWT)",
-      "Dashboards con métricas y gráficos interactivos",
-      "Bases de datos optimizadas en tiempo real",
-      "Conexión con APIs externas y pasarelas de pago",
-      "Arquitectura escalable y mantenible"
+      "Panel de administración fácil de usar sin tocar código",
+      "Actualización de fotos, descripciones y precios al instante",
+      "Base de datos ligera y segura en la nube",
+      "Cero costos mensuales de servidores o licencias",
+      "Capacitación guiada para enseñarte a usar tu panel"
     ],
-    techs: ["React", "Node.js", "Express", "PostgreSQL", "Supabase"],
+    techs: ["Panel Autogestión", "Base de Datos", "Cero Mensualidades", "Capacitación"],
     highlight: true,
   },
   {
     id: "ecommerce",
-    title: "E-Commerce & Catálogos Digitales",
-    description: "Tiendas online diseñadas para brindar una experiencia de compra rápida y sin fricción a tus clientes.",
+    title: "Catálogos Digitales con Pedidos a WhatsApp",
+    description: "Catálogo online rápido y sin fricciones para que tus clientes elijan productos y hagan sus pedidos directos a tu chat.",
     iconName: "ShoppingCart",
     features: [
-      "Catálogo dinámico con filtros y buscador",
-      "Carrito de compras persistente e intuitivo",
-      "Integración de pasarelas (Stripe, Mercado Pago, PayPal)",
-      "Panel para control de inventario y pedidos",
-      "Checkout optimizado para reducir abandono de carrito"
+      "Catálogo interactivo con buscador y categorías",
+      "Carrito de compras visual e intuitivo",
+      "Botón de pedido con mensaje detallado a WhatsApp",
+      "Acepta Pago Móvil, Binance, Zelle y transferencias",
+      "Carga instantánea en conexiones móviles de Venezuela"
     ],
-    techs: ["React", "Stripe API", "Node.js", "Tailwind CSS"]
+    techs: ["Catálogo Digital", "Carrito Persistente", "Pedidos WhatsApp", "Pago Móvil / Zelle"]
   },
   {
     id: "seo-performance",
-    title: "Optimización de Rendimiento & SEO",
-    description: "¿Tu web es lenta o no aparece en Google? La optimizo a fondo para alcanzar puntuaciones perfectas en Google Lighthouse.",
+    title: "Optimización de Rendimiento & SEO Local",
+    description: "¿Tu web actual es lenta o no aparece en búsquedas? La optimizo para que cargue al instante y destaque en Google.",
     iconName: "TrendingUp",
     features: [
       "Auditoría técnica profunda de Core Web Vitals",
-      "Compresión de assets, carga diferida y caching",
-      "Indexación SEO On-Page (meta tags, sitemap, Schema.org)",
+      "Compresión de imágenes y carga instantánea",
+      "Configuración de Google Search Console y Google Maps",
       "Puntuación 95-100 en Google PageSpeed",
-      "Mejora radical de la retención de usuarios"
+      "Mayor retención de clientes que entran a tu sitio"
     ],
-    techs: ["Lighthouse", "Core Web Vitals", "Next.js", "Clean Code"]
+    techs: ["Google Maps", "Carga < 1s", "Search Console", "Core Web Vitals"]
   },
   {
     id: "maintenance",
-    title: "Mantenimiento, Soporte & APIs",
-    description: "Acompañamiento continuo para mantener tu infraestructura web actualizada, segura y libre de errores.",
+    title: "Mantenimiento, Soporte & Actualizaciones",
+    description: "Acompañamiento continuo para mantener tu sitio web actualizado, con nuevos banners, promociones y respaldo técnico.",
     iconName: "ShieldCheck",
     features: [
-      "Actualizaciones periódicas de dependencias y seguridad",
-      "Monitoreo de caídas y copias de seguridad",
-      "Solución prioritaria de bugs o mejoras visuales",
-      "Integración de webhooks y automatizaciones",
-      "Asesoría técnica y soporte directo por WhatsApp"
+      "Actualizaciones de contenidos, banners y productos",
+      "Monitoreo de seguridad y copias de respaldo",
+      "Solución rápida de dudas o ajustes visuales",
+      "Asesoría técnica y soporte prioritario por WhatsApp",
+      "Planes mensuales opcionales y accesibles sin compromiso"
     ],
-    techs: ["Git", "Docker", "REST APIs", "Cloud Hosting"]
+    techs: ["Soporte WhatsApp", "Copias de Respaldo", "Actualizaciones", "Garantía Activa"]
   }
 ];
 

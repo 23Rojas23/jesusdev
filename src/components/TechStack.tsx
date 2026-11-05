@@ -1,119 +1,107 @@
-import { useState } from 'react';
 import type { FC } from 'react';
-import { techStackData } from '../data/content';
-import { ShieldCheck, Zap, Rocket, Terminal, Layers } from 'lucide-react';
+import { Zap, Smartphone, DollarSign, ShieldCheck, MessageCircle, UserCheck, CheckCircle2 } from 'lucide-react';
 
 export const TechStack: FC = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'frontend' | 'backend' | 'tools' | 'database'>('all');
-
-  const filteredTechs = activeTab === 'all'
-    ? techStackData
-    : techStackData.filter((t) => t.category === activeTab);
-
-  const advantages = [
+  const businessBenefits = [
     {
-      icon: <Zap className="w-5 h-5 text-indigo-600" />,
-      title: "Velocidad Extrema (< 1s)",
-      description: "El stack React + Vite + Tailwind elimina código innecesario, logrando tiempos de carga instantáneos."
+      icon: <Zap className="w-5 h-5 text-amber-600" />,
+      iconBg: "bg-amber-50 border-amber-200",
+      title: "Velocidad Ultrarrápida (< 1 seg)",
+      description: "Tus clientes no van a esperar: una página veloz retiene más visitantes y evita que se vayan con la competencia.",
+      highlight: "Mayor retención",
     },
     {
-      icon: <Rocket className="w-5 h-5 text-indigo-600" />,
-      title: "Estructura Limpia y SEO",
-      description: "Marcado semántico que los buscadores leen sin problemas, facilitando el posicionamiento orgánico."
+      icon: <Smartphone className="w-5 h-5 text-indigo-600" />,
+      iconBg: "bg-indigo-50 border-indigo-200",
+      title: "100% Adaptable a Celulares",
+      description: "Más del 80% de tus visitas llegarán desde smartphones. Tu sitio se verá nítido, proporcional y cómodo de navegar.",
+      highlight: "Mobile-First",
     },
     {
-      icon: <ShieldCheck className="w-5 h-5 text-indigo-600" />,
-      title: "Estabilidad y Seguridad",
-      description: "Sin plugins vulnerables ni constructores pesados. Código modular, tipado y componentes reutilizables."
+      icon: <DollarSign className="w-5 h-5 text-emerald-600" />,
+      iconBg: "bg-emerald-50 border-emerald-200",
+      title: "$0 en Mensualidades de Hosting",
+      description: "Alojada en infraestructura en la nube de nivel mundial sin cobros mensuales de servidor tradicional en dólares.",
+      highlight: "Ahorro continuo",
     },
     {
-      icon: <Layers className="w-5 h-5 text-indigo-600" />,
-      title: "Escalabilidad a Futuro",
-      description: "Tu web podrá crecer con tu proyecto: desde una landing page sencilla hasta integrar nuevas secciones."
-    }
+      icon: <ShieldCheck className="w-5 h-5 text-blue-600" />,
+      iconBg: "bg-blue-50 border-blue-200",
+      title: "Seguridad y Cero Caídas",
+      description: "Código propio y optimizado, sin plugins lentos que se rompan ni hackeos comunes en plataformas viejas.",
+      highlight: "Máxima estabilidad",
+    },
+    {
+      icon: <MessageCircle className="w-5 h-5 text-emerald-600" />,
+      iconBg: "bg-emerald-50 border-emerald-200",
+      title: "Enfocada en Ventas por WhatsApp",
+      description: "Estructura y botones estratégicos pensados para que el cliente pase de mirar tus servicios a escribirte a tu chat.",
+      highlight: "Conversión directa",
+    },
+    {
+      icon: <UserCheck className="w-5 h-5 text-violet-600" />,
+      iconBg: "bg-violet-50 border-violet-200",
+      title: "Atención Directa 1 a 1",
+      description: "Sin agencias burocráticas ni intermediarios: te comunicas directamente con la persona que programa tu sitio.",
+      highlight: "Trato personal",
+    },
   ];
 
   return (
-    <section id="tecnologias" className="py-20 bg-white border-b border-slate-200/80 scroll-mt-20">
+    <section id="ventajas" className="py-20 md:py-24 bg-white border-b border-slate-200/80 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
-            Herramientas y Tecnologías
+            Ventajas Clave
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Tecnologías modernas para sitios eficientes
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Lo que una web moderna hace por tu negocio
           </h2>
-          <p className="mt-3 text-slate-600 text-sm sm:text-base">
-            Trabajo con las herramientas más eficientes del ecosistema web para asegurar que tu sitio sea rápido, seguro y fácil de mantener.
+          <p className="mt-3 text-slate-600 text-base sm:text-lg">
+            Menos tecnicismos y más resultados: cada aspecto de tu sitio web está pensado para generar credibilidad y clientes.
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          {[
-            { id: 'all', label: 'Todo el Stack' },
-            { id: 'frontend', label: 'Frontend & UI' },
-            { id: 'backend', label: 'Backend & APIs' },
-            { id: 'database', label: 'Bases de Datos' },
-            { id: 'tools', label: 'Herramientas & Cloud' },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all cursor-pointer ${
-                activeTab === tab.id
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200/80'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Tech Badges Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 mb-16">
-          {filteredTechs.map((tech) => (
+        {/* Benefits Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {businessBenefits.map((benefit, index) => (
             <div
-              key={tech.name}
-              className="p-3.5 rounded-xl bg-slate-50/60 border border-slate-200 hover:border-slate-300 flex items-center justify-between group transition-all"
+              key={index}
+              className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 hover:border-slate-300 shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
             >
-              <div className="flex items-center gap-2.5">
-                <Terminal className="w-4 h-4 text-slate-700" />
-                <span className="font-semibold text-sm text-slate-800">
-                  {tech.name}
-                </span>
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className={`w-11 h-11 rounded-xl border flex items-center justify-center ${benefit.iconBg}`}>
+                    {benefit.icon}
+                  </div>
+                  <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                    {benefit.highlight}
+                  </span>
+                </div>
+
+                <h3 className="text-lg font-bold text-slate-900 mb-2.5">
+                  {benefit.title}
+                </h3>
+
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white text-slate-600 border border-slate-200">
-                {tech.level}
-              </span>
             </div>
           ))}
         </div>
 
-        {/* Why this stack matters to the client */}
-        <div className="rounded-2xl p-6 sm:p-8 bg-slate-50/70 border border-slate-200/90 shadow-2xs">
-          <div className="text-center max-w-xl mx-auto mb-8">
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900">
-              ¿Por qué este enfoque beneficia a tu proyecto?
-            </h3>
-            <p className="text-slate-600 text-xs sm:text-sm mt-1">
-              Más allá del código, estas ventajas impactan directamente en la experiencia de tus clientes:
-            </p>
+        {/* Reassurance strip */}
+        <div className="mt-12 max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 text-center flex flex-col sm:flex-row items-center justify-center gap-3 text-xs sm:text-sm text-slate-700 shadow-2xs">
+          <div className="flex items-center gap-2 font-semibold text-slate-900 shrink-0">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <span>Desarrollo con Código Propio</span>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {advantages.map((adv, index) => (
-              <div key={index} className="space-y-2">
-                <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center mb-3 shadow-2xs">
-                  {adv.icon}
-                </div>
-                <h4 className="font-bold text-sm text-slate-900">{adv.title}</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">{adv.description}</p>
-              </div>
-            ))}
-          </div>
+          <span className="hidden sm:inline text-slate-300">|</span>
+          <span className="text-slate-600">
+            Sin plantillas pesadas, optimizado para Google y con entrega de accesos completa.
+          </span>
         </div>
       </div>
     </section>

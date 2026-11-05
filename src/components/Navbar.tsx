@@ -21,7 +21,7 @@ export const Navbar: FC<NavbarProps> = ({ onOpenContact }) => {
 
   const navLinks = [
     { label: 'Servicios', href: '#servicios' },
-    { label: 'Tecnologías', href: '#tecnologias' },
+    { label: 'Ventajas', href: '#ventajas' },
     { label: 'Proceso', href: '#proceso' },
     { label: 'Calculadora', href: '#calculadora' },
     { label: 'Planes', href: '#precios' },

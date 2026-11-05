@@ -164,7 +164,7 @@ export const Hero: FC<HeroProps> = ({
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
                     <span className="font-medium text-slate-700">Diseño Personalizado</span>
                   </div>
-                  <span className="font-mono text-[11px] text-slate-500">React + Vite + Tailwind</span>
+                  <span className="text-[11px] text-slate-500 font-medium">Carga Rápida & Móvil</span>
                 </div>
               </div>
             </div>
@@ -174,9 +174,9 @@ export const Hero: FC<HeroProps> = ({
         {/* Highlights Strip */}
         <div className="mt-16 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
           <div className="p-3 text-center sm:text-left">
-            <div className="text-xs font-bold uppercase tracking-wider text-slate-500">Tecnología</div>
-            <div className="text-xl sm:text-2xl font-bold text-slate-900 mt-1">React + Vite</div>
-            <div className="text-xs text-slate-600 mt-0.5">Stack moderno y ágil</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-500">Desarrollo</div>
+            <div className="text-xl sm:text-2xl font-bold text-slate-900 mt-1">Código Propio</div>
+            <div className="text-xs text-slate-600 mt-0.5">Sin plantillas lentas</div>
           </div>
           <div className="p-3 text-center sm:text-left border-l border-slate-200">
             <div className="text-xs font-bold uppercase tracking-wider text-slate-500">Adaptabilidad</div>

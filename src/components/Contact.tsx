@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { FC, ChangeEvent, FormEvent } from 'react';
 import { personalInfo } from '../data/content';
 import {
@@ -14,65 +14,47 @@ import {
   AlertCircle,
 } from 'lucide-react';
 
+export interface ProjectInquiry {
+  projectType: string;
+  budget: string;
+  message: string;
+}
+
 interface ContactProps {
-  initialServiceOrPlan?: string;
-  initialBudgetTier?: string;
-  initialEstimate?: string;
+  projectInquiry: ProjectInquiry;
+  onProjectInquiryChange: (updates: Partial<ProjectInquiry>) => void;
+  isSubmitted: boolean;
+  onSubmittedChange: (submitted: boolean) => void;
 }
 
 export const Contact: FC<ContactProps> = ({
-  initialServiceOrPlan,
-  initialBudgetTier,
-  initialEstimate,
+  projectInquiry,
+  onProjectInquiryChange,
+  isSubmitted,
+  onSubmittedChange,
 }) => {
-  const [formData, setFormData] = useState({
+  const [contactInfo, setContactInfo] = useState({
     name: '',
     email: '',
     phone: '',
-    projectType: 'Landing Express ($120)',
-    budget: '$120 - $200 USD',
-    message: '',
   });
 
   const [honeypot, setHoneypot] = useState('');
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (initialServiceOrPlan) {
-      setFormData((prev) => ({
-        ...prev,
-        projectType: initialServiceOrPlan,
-        message: prev.message || `Hola, me interesa solicitar información sobre el paquete/servicio: ${initialServiceOrPlan}.`,
-      }));
-    }
-  }, [initialServiceOrPlan]);
+  const handleContactChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setContactInfo((prev) => ({ ...prev, [name]: value }));
+  };
 
-  useEffect(() => {
-    if (initialBudgetTier) {
-      setFormData((prev) => ({
-        ...prev,
-        budget: initialBudgetTier,
-      }));
-    }
-  }, [initialBudgetTier]);
-
-  useEffect(() => {
-    if (initialEstimate) {
-      setFormData((prev) => ({
-        ...prev,
-        message: `Hola, coticé en tu calculadora web la siguiente configuración:\n${initialEstimate}\n\nMe gustaría revisar detalles.`,
-      }));
-    }
-  }, [initialEstimate]);
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  const handleProjectChange = (
+    e: ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    onProjectInquiryChange({ [name]: value });
   };
 
   const handleCopyEmail = () => {
@@ -86,7 +68,7 @@ export const Contact: FC<ContactProps> = ({
 
     // Anti-spam honeypot detection
     if (honeypot) {
-      setIsSubmitted(true);
+      onSubmittedChange(true);
       return;
     }
 
@@ -109,15 +91,15 @@ export const Contact: FC<ContactProps> = ({
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          _subject: `Nueva Solicitud de Cotización: ${formData.name || 'Cliente'} - JesusDev`,
+          _subject: `Nueva Solicitud de Cotización: ${contactInfo.name || 'Cliente'} - JesusDev`,
           _captcha: 'false',
           _honey: '',
-          Nombre: formData.name.trim(),
-          Email: formData.email.trim(),
-          'Teléfono / WhatsApp': formData.phone.trim() || 'No especificado',
-          'Tipo de Servicio': formData.projectType,
-          'Presupuesto Estimado': formData.budget,
-          Mensaje: formData.message.trim(),
+          Nombre: contactInfo.name.trim(),
+          Email: contactInfo.email.trim(),
+          'Teléfono / WhatsApp': contactInfo.phone.trim() || 'No especificado',
+          'Tipo de Servicio': projectInquiry.projectType,
+          'Presupuesto Estimado': projectInquiry.budget,
+          Mensaje: projectInquiry.message.trim(),
           _template: 'table',
         }),
       });
@@ -126,7 +108,7 @@ export const Contact: FC<ContactProps> = ({
 
       if (response.ok || data.success === 'true' || data.success === true) {
         setLastSubmitTime(Date.now());
-        setIsSubmitted(true);
+        onSubmittedChange(true);
       } else {
         throw new Error(data.message || 'Error al procesar el mensaje.');
       }
@@ -141,7 +123,7 @@ export const Contact: FC<ContactProps> = ({
   };
 
   const generateWhatsAppLink = () => {
-    const text = `¡Hola ${personalInfo.name}!\n\nMi nombre es *${formData.name || 'un cliente'}*.\nCorreo: ${formData.email || 'N/A'}\nTeléfono: ${formData.phone || 'N/A'}\nTipo de Proyecto: *${formData.projectType}*\nPresupuesto Estimado: *${formData.budget}*\n\n*Detalles:* ${formData.message || 'Me interesa cotizar un desarrollo web.'}`;
+    const text = `¡Hola ${personalInfo.name}!\n\nMi nombre es *${contactInfo.name || 'un cliente'}*.\nCorreo: ${contactInfo.email || 'N/A'}\nTeléfono: ${contactInfo.phone || 'N/A'}\nTipo de Proyecto: *${projectInquiry.projectType}*\nPresupuesto Estimado: *${projectInquiry.budget}*\n\n*Detalles:* ${projectInquiry.message || 'Me interesa cotizar un desarrollo web.'}`;
     return `https://wa.me/${personalInfo.whatsappNumber}?text=${encodeURIComponent(text)}`;
   };
 
@@ -265,7 +247,7 @@ export const Contact: FC<ContactProps> = ({
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900">¡Mensaje Enviado con Éxito!</h3>
                   <p className="text-slate-600 text-sm max-w-md mx-auto leading-relaxed">
-                    Gracias por ponerte en contacto, <strong className="text-slate-900">{formData.name}</strong>. Ya he recibido los detalles de tu proyecto y me comunicaré contigo a <strong className="text-slate-900">{formData.email}</strong> a la brevedad.
+                    Gracias por ponerte en contacto, <strong className="text-slate-900">{contactInfo.name}</strong>. Ya he recibido los detalles de tu proyecto y me comunicaré contigo a <strong className="text-slate-900">{contactInfo.email}</strong> a la brevedad.
                   </p>
 
                   <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -281,7 +263,7 @@ export const Contact: FC<ContactProps> = ({
                     <button
                       type="button"
                       onClick={() => {
-                        setIsSubmitted(false);
+                        onSubmittedChange(false);
                         setErrorMessage(null);
                       }}
                       className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm transition-colors cursor-pointer"
@@ -322,8 +304,8 @@ export const Contact: FC<ContactProps> = ({
                         required
                         maxLength={100}
                         autoComplete="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        value={contactInfo.name}
+                        onChange={handleContactChange}
                         placeholder="Ej. Juan Pérez"
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors"
                       />
@@ -341,8 +323,8 @@ export const Contact: FC<ContactProps> = ({
                         required
                         maxLength={120}
                         autoComplete="email"
-                        value={formData.email}
-                        onChange={handleChange}
+                        value={contactInfo.email}
+                        onChange={handleContactChange}
                         placeholder="juan@empresa.com"
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors"
                       />
@@ -361,8 +343,8 @@ export const Contact: FC<ContactProps> = ({
                         name="phone"
                         maxLength={30}
                         autoComplete="tel"
-                        value={formData.phone}
-                        onChange={handleChange}
+                        value={contactInfo.phone}
+                        onChange={handleContactChange}
                         placeholder="+58 412 000 0000"
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors"
                       />
@@ -377,8 +359,8 @@ export const Contact: FC<ContactProps> = ({
                       <select
                         id="contact-service"
                         name="projectType"
-                        value={formData.projectType}
-                        onChange={handleChange}
+                        value={projectInquiry.projectType}
+                        onChange={handleProjectChange}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors cursor-pointer"
                       >
                         <option value="Landing Express ($120)">Landing Express ($120)</option>
@@ -387,8 +369,8 @@ export const Contact: FC<ContactProps> = ({
                         <option value="Catálogo con Pedidos a WhatsApp ($280)">Catálogo con Pedidos a WhatsApp ($280)</option>
                         <option value="Optimización de Velocidad & SEO">Optimización de Velocidad & SEO</option>
                         <option value="Mantenimiento o Consulta General">Mantenimiento o Consulta General</option>
-                        {!['Landing Express ($120)', 'Sitio Web Corporativo Pro ($200)', 'Web Administrable con CMS ($350)', 'Catálogo con Pedidos a WhatsApp ($280)', 'Optimización de Velocidad & SEO', 'Mantenimiento o Consulta General'].includes(formData.projectType) && formData.projectType && (
-                          <option value={formData.projectType}>{formData.projectType}</option>
+                        {!['Landing Express ($120)', 'Sitio Web Corporativo Pro ($200)', 'Web Administrable con CMS ($350)', 'Catálogo con Pedidos a WhatsApp ($280)', 'Optimización de Velocidad & SEO', 'Mantenimiento o Consulta General'].includes(projectInquiry.projectType) && projectInquiry.projectType && (
+                          <option value={projectInquiry.projectType}>{projectInquiry.projectType}</option>
                         )}
                       </select>
                     </div>
@@ -402,8 +384,8 @@ export const Contact: FC<ContactProps> = ({
                     <select
                       id="contact-budget"
                       name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
+                      value={projectInquiry.budget}
+                      onChange={handleProjectChange}
                       className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors cursor-pointer"
                     >
                       <option value="Menos de $150 USD">Menos de $150 USD (Landing Express)</option>
@@ -420,7 +402,7 @@ export const Contact: FC<ContactProps> = ({
                         Detalles del Proyecto *
                       </label>
                       <span className="text-[11px] font-mono text-slate-400">
-                        {formData.message.length}/2000
+                        {projectInquiry.message.length}/2000
                       </span>
                     </div>
                     <textarea
@@ -429,8 +411,8 @@ export const Contact: FC<ContactProps> = ({
                       required
                       maxLength={2000}
                       rows={4}
-                      value={formData.message}
-                      onChange={handleChange}
+                      value={projectInquiry.message}
+                      onChange={handleProjectChange}
                       placeholder="Cuéntame sobre tu empresa, qué objetivos tienes y qué funciones te gustaría tener..."
                       className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors resize-none"
                     />

@@ -8,46 +8,64 @@ import { BudgetEstimator } from './components/BudgetEstimator';
 import { Pricing } from './components/Pricing';
 import { Faq } from './components/Faq';
 import { Contact } from './components/Contact';
+import type { ProjectInquiry } from './components/Contact';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
+const DEFAULT_PROJECT_INQUIRY: ProjectInquiry = {
+  projectType: 'Landing Express ($120)',
+  budget: 'Menos de $150 USD',
+  message: '',
+};
+
 export default function App() {
-  const [selectedServiceOrPlan, setSelectedServiceOrPlan] = useState<string | undefined>();
-  const [selectedBudgetTier, setSelectedBudgetTier] = useState<string | undefined>();
-  const [estimatedSummary, setEstimatedSummary] = useState<string | undefined>();
+  const [projectInquiry, setProjectInquiry] = useState<ProjectInquiry>(DEFAULT_PROJECT_INQUIRY);
+  const [isContactSubmitted, setIsContactSubmitted] = useState(false);
 
-  const scrollToContact = (serviceOrPlan?: string, budgetTier?: string) => {
-    if (serviceOrPlan) {
-      setSelectedServiceOrPlan(serviceOrPlan);
-    }
-    if (budgetTier) {
-      setSelectedBudgetTier(budgetTier);
-    }
-    const contactElem = document.getElementById('contacto');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleOpenEstimator = () => {
-    const elem = document.getElementById('calculadora');
+  const scrollToSection = (sectionId: string) => {
+    const elem = document.getElementById(sectionId);
     if (elem) {
       elem.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  const scrollToContact = (serviceOrPlan?: string, budgetTier?: string) => {
+    if (serviceOrPlan || budgetTier) {
+      setProjectInquiry((prev) => {
+        const isAutoServiceMessage =
+          !prev.message.trim() ||
+          prev.message.startsWith('Hola, me interesa solicitar información sobre el paquete/servicio:');
+
+        return {
+          projectType: serviceOrPlan ?? prev.projectType,
+          budget: budgetTier ?? prev.budget,
+          message:
+            serviceOrPlan && isAutoServiceMessage
+              ? `Hola, me interesa solicitar información sobre el paquete/servicio: ${serviceOrPlan}.`
+              : prev.message,
+        };
+      });
+      setIsContactSubmitted(false);
+    }
+    scrollToSection('contacto');
+  };
+
+  const handleOpenEstimator = () => {
+    scrollToSection('calculadora');
+  };
+
   const handleApplyEstimate = (summary: string, serviceName?: string, budgetTier?: string) => {
-    setEstimatedSummary(summary);
-    if (serviceName) {
-      setSelectedServiceOrPlan(serviceName);
-    }
-    if (budgetTier) {
-      setSelectedBudgetTier(budgetTier);
-    }
-    const contactElem = document.getElementById('contacto');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    setProjectInquiry((prev) => ({
+      projectType: serviceName ?? prev.projectType,
+      budget: budgetTier ?? prev.budget,
+      message: `Hola, coticé en tu calculadora web la siguiente configuración:\n${summary}\n\nMe gustaría revisar detalles.`,
+    }));
+    setIsContactSubmitted(false);
+    scrollToSection('contacto');
+  };
+
+  const handleProjectInquiryChange = (updates: Partial<ProjectInquiry>) => {
+    setProjectInquiry((prev) => ({ ...prev, ...updates }));
   };
 
   return (
@@ -83,9 +101,10 @@ export default function App() {
 
         {/* 10. Contact & Proposal Request */}
         <Contact
-          initialServiceOrPlan={selectedServiceOrPlan}
-          initialBudgetTier={selectedBudgetTier}
-          initialEstimate={estimatedSummary}
+          projectInquiry={projectInquiry}
+          onProjectInquiryChange={handleProjectInquiryChange}
+          isSubmitted={isContactSubmitted}
+          onSubmittedChange={setIsContactSubmitted}
         />
       </main>
 

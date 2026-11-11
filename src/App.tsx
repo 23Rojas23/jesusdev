@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { LazyMotion, MotionConfig, domAnimation } from 'motion/react';
+import { Toaster, toast } from 'sonner';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
@@ -61,6 +63,7 @@ export default function App() {
       message: `Hola, coticé en tu calculadora web la siguiente configuración:\n${summary}\n\nMe gustaría revisar detalles.`,
     }));
     setIsContactSubmitted(false);
+    toast.success('Configuración aplicada al formulario de contacto');
     scrollToSection('contacto');
   };
 
@@ -69,50 +72,56 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-indigo-500 selection:text-white font-sans antialiased overflow-x-hidden">
-      {/* Navigation */}
-      <Navbar onOpenContact={() => scrollToContact()} />
+    <LazyMotion features={domAnimation}>
+      <MotionConfig reducedMotion="user">
+        <div className="min-h-screen bg-white text-slate-900 selection:bg-indigo-600 selection:text-white font-sans antialiased overflow-x-hidden">
+          <Toaster position="bottom-left" richColors closeButton />
 
-      {/* Main Content */}
-      <main>
-        {/* 1. Hero Section */}
-        <Hero
-          onOpenContact={() => scrollToContact()}
-          onOpenEstimator={handleOpenEstimator}
-        />
+          {/* Navigation */}
+          <Navbar onOpenContact={() => scrollToContact()} />
 
-        {/* 2. Services Section */}
-        <Services onSelectService={(service) => scrollToContact(service)} />
+          {/* Main Content */}
+          <main>
+            {/* 1. Hero Section */}
+            <Hero
+              onOpenContact={() => scrollToContact()}
+              onOpenEstimator={handleOpenEstimator}
+            />
 
-        {/* 3. Tech Stack & Advantages */}
-        <TechStack />
+            {/* 2. Services Section */}
+            <Services onSelectService={(service) => scrollToContact(service)} />
 
-        {/* 4. Process & Methodology */}
-        <Process />
+            {/* 3. Business Benefits Section */}
+            <TechStack />
 
-        {/* 5. Interactive Budget Calculator */}
-        <BudgetEstimator onApplyEstimate={handleApplyEstimate} />
+            {/* 4. Process & Methodology */}
+            <Process />
 
-        {/* 6. Pricing & Packages */}
-        <Pricing onSelectPlan={(service, budgetTier) => scrollToContact(service, budgetTier)} />
+            {/* 5. Interactive Budget Calculator */}
+            <BudgetEstimator onApplyEstimate={handleApplyEstimate} />
 
-        {/* 7. FAQ */}
-        <Faq />
+            {/* 6. Pricing & Packages */}
+            <Pricing onSelectPlan={(service, budgetTier) => scrollToContact(service, budgetTier)} />
 
-        {/* 10. Contact & Proposal Request */}
-        <Contact
-          projectInquiry={projectInquiry}
-          onProjectInquiryChange={handleProjectInquiryChange}
-          isSubmitted={isContactSubmitted}
-          onSubmittedChange={setIsContactSubmitted}
-        />
-      </main>
+            {/* 7. FAQ */}
+            <Faq />
 
-      {/* Footer */}
-      <Footer />
+            {/* 8. Contact & Proposal Request */}
+            <Contact
+              projectInquiry={projectInquiry}
+              onProjectInquiryChange={handleProjectInquiryChange}
+              isSubmitted={isContactSubmitted}
+              onSubmittedChange={setIsContactSubmitted}
+            />
+          </main>
 
-      {/* Quick Action Floating WhatsApp */}
-      <FloatingWhatsApp />
-    </div>
+          {/* Footer */}
+          <Footer />
+
+          {/* Quick Action Floating WhatsApp */}
+          <FloatingWhatsApp />
+        </div>
+      </MotionConfig>
+    </LazyMotion>
   );
 }

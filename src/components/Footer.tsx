@@ -10,16 +10,16 @@ export const Footer: FC = () => {
   };
 
   return (
-    <footer className="bg-slate-50 border-t border-slate-200 py-16 text-slate-600 text-sm">
+    <footer className="bg-white border-t border-slate-200/80 py-16 text-slate-600 text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-200">
           {/* Brand col */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center shadow-xs">
+              <div className="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-xs">
                 <Code2 className="w-4 h-4" />
               </div>
-              <span className="font-bold text-base text-slate-900">
+              <span className="font-display font-bold text-base text-slate-900">
                 {personalInfo.brandName}
               </span>
             </div>
@@ -32,7 +32,7 @@ export const Footer: FC = () => {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:border-indigo-300 transition-colors shadow-2xs"
+                className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 hover:border-indigo-300 transition-colors shadow-2xs"
                 aria-label="GitHub"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -45,7 +45,7 @@ export const Footer: FC = () => {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:border-indigo-300 transition-colors shadow-2xs"
+                className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 hover:border-indigo-300 transition-colors shadow-2xs"
                 aria-label="LinkedIn"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ export const Footer: FC = () => {
                 href={personalInfo.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:border-indigo-300 transition-colors shadow-2xs"
+                className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 hover:border-indigo-300 transition-colors shadow-2xs"
                 aria-label="X / Twitter"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -107,17 +107,17 @@ export const Footer: FC = () => {
             </ul>
           </div>
 
-          {/* Contact and legal */}
+          {/* Contact and availability */}
           <div className="md:col-span-4 space-y-3">
             <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
               Disponibilidad
             </h4>
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 space-y-2 shadow-2xs">
+            <div className="p-4 rounded-2xl bg-slate-50/90 border border-slate-200 space-y-2 shadow-2xs">
               <div className="flex items-center gap-2 text-xs text-emerald-700 font-semibold">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 <span>Abierto a nuevos proyectos</span>
               </div>
-              <p className="text-xs text-slate-600">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Aceptando proyectos para este mes. Agenda tu reunión previa para reservar cupo en el calendario.
               </p>
             </div>
@@ -136,8 +136,9 @@ export const Footer: FC = () => {
             </span>
 
             <button
+              type="button"
               onClick={scrollToTop}
-              className="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-indigo-600 hover:border-slate-300 transition-colors cursor-pointer shadow-2xs"
+              className="p-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 hover:text-indigo-600 hover:border-slate-300 transition-colors cursor-pointer shadow-2xs"
               title="Volver arriba"
               aria-label="Volver arriba"
             >

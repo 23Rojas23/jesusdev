@@ -20,12 +20,6 @@ export const Hero: FC<HeroProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Copy & CTAs */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
-            {/* Subtle Kicker */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 text-slate-800 text-xs font-semibold tracking-wide border border-slate-200/80">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
-              <span>Desarrollo Web Frontend · React & Tailwind CSS</span>
-            </div>
-
             {/* Main Headline - High contrast, solid, no rainbow gradients */}
             <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
               Sitios web modernos, rápidos y hechos a la medida de tu negocio.
@@ -122,9 +116,6 @@ export const Hero: FC<HeroProps> = ({
 
                   {/* Mini hero section */}
                   <div className="p-5 rounded-xl bg-white border border-slate-200 space-y-2 text-center shadow-2xs">
-                    <span className="inline-block text-[10px] font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">
-                      Landing Page Profesional
-                    </span>
                     <h3 className="text-base sm:text-lg font-bold text-slate-900">
                       Diseñada para captar clientes y cargar al instante
                     </h3>

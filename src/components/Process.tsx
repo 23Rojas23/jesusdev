@@ -25,9 +25,6 @@ export const Process: FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
-            Metodología de Trabajo
-          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
             Un proceso transparente paso a paso
           </h2>

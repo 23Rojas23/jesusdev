@@ -161,9 +161,6 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
-            Estimador de Presupuesto
-          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
             Calcula la estimación de tu proyecto
           </h2>
@@ -262,7 +259,7 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
                     Modalidad Express / Entrega Prioritaria
                   </span>
                   <span className="text-xs text-slate-600">
-                    Reduce el plazo de entrega ~35% dedicando horas exclusivas. (+25%)
+                    Reduce el plazo de entrega ~35% dedicando horas exclusivas. (+20%)
                   </span>
                 </div>
                 <button
@@ -311,7 +308,7 @@ export const BudgetEstimator: FC<BudgetEstimatorProps> = ({ onApplyEstimate }) =
 
                   {isExpress && (
                     <div className="flex justify-between text-indigo-700 font-medium">
-                      <span>Recargo entrega Express (+25%)</span>
+                      <span>Recargo entrega Express (+20%)</span>
                       <span className="font-mono font-bold">Incluido</span>
                     </div>
                   )}
